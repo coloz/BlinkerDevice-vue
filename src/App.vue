@@ -1,44 +1,34 @@
 <template>
   <div id="app">
+  <div v-bind:style="{marginTop:headerHeight}">
+
     <BlinkerDevice />
+    </div>
   </div>
 </template>
 
 <script>
+import Vue from 'vue';
 import BlinkerDevice from "./components/BlinkerDevice";
-
+// Vue.forceUpdate();
 export default {
   name: "App",
   components: {
     BlinkerDevice
+  },
+  data(){
+    return{
+      headerHeight:Vue.BlinkerHeaderHeight
+    }
+  },
+  updated: function() {
+    setTimeout(()=>{
+console.log(Vue.BlinkerHeaderHeight);
+// this.$forceUpdate()
+    },3000)
   }
 };
-let appData = {};
-let showBox = document.getElementById("showBox");
-// window.addEventListener("message", receiveMessage, false);
 
-// function send2Device(data) {
-//   window.parent.postMessage(data, "*");
-// }
-
-// function getState() {
-//   send2Device({ get: "state" });
-// }
-
-// function tapButton() {
-//   if (appData.deviceData.switch == "on") send2Device({ switch: "off" });
-//   else send2Device({ switch: "on" });
-// }
-
-// function receiveMessage(e) {
-//   if (typeof e.data.headerHeight != "undefined") {
-//     let header = document.getElementById("header");
-//     header.style.height = e.data.headerHeight + "px";
-//   }
-//   Object.assign(appData, e.data);
-//   showBox.innerHTML = generateRes(JSON.stringify(appData));
-// }
-// send2Device({});
 </script>
 
 <style>
@@ -48,6 +38,5 @@ let showBox = document.getElementById("showBox");
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>

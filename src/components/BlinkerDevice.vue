@@ -58,25 +58,30 @@
 </template>
 
 <script>
-import "../blinker";
+import Vue from 'vue';
+
 var Gauge = require("svg-gauge");
 export default {
   name: "BlinkerDevice",
   props: {
     deviceId: String
-    // data: objec
+  },
+  data(){
+    return{
+      headerHeight:this.BlinkerHeaderHeight
+    }
   },
   mounted: function() {
     Gauge(document.getElementById("gauge1"), {
       max: 100,
-      value: 41,
+      value:20,
       valueClass: "value-lable",
       color: value => {
-        if (value < -25) {
+        if (value < 25) {
           return "#5ee432";
-        } else if (value < 0) {
+        } else if (value < 50) {
           return "#fffa50";
-        } else if (value < 25) {
+        } else if (value < 75) {
           return "#f7aa38";
         } else {
           return "#ef4655";
@@ -86,12 +91,34 @@ export default {
     Gauge(document.getElementById("gauge2"), {
       max: 100,
       value: 45,
-      valueClass: "value-lable"
+      valueClass: "value-lable",
+      color: value => {
+        if (value < 25) {
+          return "#5ee432";
+        } else if (value < 50) {
+          return "#fffa50";
+        } else if (value < 75) {
+          return "#f7aa38";
+        } else {
+          return "#ef4655";
+        }
+      }
     });
     Gauge(document.getElementById("gauge3"), {
       max: 100,
-      value: 50,
-      valueClass: "value-lable"
+      value: 80,
+      valueClass: "value-lable",
+      color: value => {
+        if (value < 25) {
+          return "#5ee432";
+        } else if (value < 50) {
+          return "#fffa50";
+        } else if (value < 75) {
+          return "#f7aa38";
+        } else {
+          return "#ef4655";
+        }
+      }
     });
   },
   methods: {
