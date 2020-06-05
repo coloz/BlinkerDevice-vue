@@ -1,34 +1,33 @@
 <template>
   <div id="app">
-  <div v-bind:style="{marginTop:headerHeight}">
-
-    <BlinkerDevice />
+    <div v-bind:style="{marginTop:headerHeight+'px'}">
+      <BlinkerDevice />
     </div>
   </div>
 </template>
 
 <script>
-import Vue from 'vue';
+import "./blinker";
 import BlinkerDevice from "./components/BlinkerDevice";
-// Vue.forceUpdate();
+import { blinker } from './blinker';
+
 export default {
   name: "App",
   components: {
     BlinkerDevice
   },
-  data(){
-    return{
-      headerHeight:Vue.BlinkerHeaderHeight
-    }
+  data() {
+    return {
+      headerHeight: "0"
+    };
   },
-  updated: function() {
-    setTimeout(()=>{
-console.log(Vue.BlinkerHeaderHeight);
-// this.$forceUpdate()
-    },3000)
+  mounted: function() {
+    setTimeout(() => {
+      console.log("BlinkerHeaderHeight", blinker.headerHeight);
+      this.headerHeight = blinker.headerHeight;
+    }, 100);
   }
 };
-
 </script>
 
 <style>

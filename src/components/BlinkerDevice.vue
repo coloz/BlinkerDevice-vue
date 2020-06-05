@@ -4,7 +4,7 @@
     <!-- <div>实时状态</div> -->
     <div class="state-box">
       <div class="item block">
-        <div class="title">备连接数</div>
+        <div class="title">设备连接数</div>
         <div class="number">7</div>
       </div>
       <div class="item block">
@@ -58,23 +58,23 @@
 </template>
 
 <script>
-import Vue from 'vue';
-
+// import Vue from 'vue';
+import { blinker, send2Device } from "../blinker";
 var Gauge = require("svg-gauge");
 export default {
   name: "BlinkerDevice",
   props: {
     deviceId: String
   },
-  data(){
-    return{
-      headerHeight:this.BlinkerHeaderHeight
-    }
-  },
+  // data(){
+  //   // return{
+  //   //   headerHeight:this.BlinkerHeaderHeight
+  //   // }
+  // },
   mounted: function() {
     Gauge(document.getElementById("gauge1"), {
       max: 100,
-      value:20,
+      value: 20,
       valueClass: "value-lable",
       color: value => {
         if (value < 25) {
@@ -123,7 +123,7 @@ export default {
   },
   methods: {
     clickSwitch: function(event) {
-      console.log(event);
+      send2Device({"switch":"on"});
     }
   }
 };
@@ -205,7 +205,7 @@ export default {
     .gauge-container {
       .gauge .value {
         stroke: #f8774b;
-        stroke-dasharray: 25 1;
+        stroke-dasharray: 18 1;
         stroke-width: 5;
       }
     }
