@@ -15,9 +15,7 @@ function receiveMessage(e) {
     if (e.data == 'undefined' || e.data == null || JSON.stringify(e.data).indexOf('{}') > -1 || JSON.stringify(e.data).indexOf('webpack') > -1) return
     if (typeof e.data.headerHeight != "undefined") {
         blinker.headerHeight = e.data.headerHeight;
-        console.log(blinker.headerHeight);
     } else {
-        console.log(e.data);
         Object.assign(blinker.appData, e.data);
     }
 }
