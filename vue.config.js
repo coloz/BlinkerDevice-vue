@@ -1,7 +1,8 @@
 module.exports = {
     lintOnSave: false,
     devServer: {
-        hot: true
+        hot: true,
+        liveReload: true
     },
     css: {
         // 是否使用css分离插件 ExtractTextPlugin
